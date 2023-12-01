@@ -8,18 +8,14 @@ on:
       - "src/**"
       - "kube/**"
 
-env:
-  image: ghcr.io/${{ github.repository }}:${{ github.run_id }}
-
 jobs:
   release:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: arwynfr/arwynfr/.github/workflows/rke2-deployment-generic.yaml@main
-        with:
-          sources: src
-          resources: kube
-        secrets:
-          token: ${{ secrets.token }}
-          server: ${{ secrets.server }}
-          authority: ${{ secrets.authority }}
+    uses: arwynfr/arwynfr/.github/workflows/rke2-deployment-generic.yaml@main
+    with:
+      version: ${{ github.run_id }}
+      sources: src
+      resources: kube
+    secrets:
+      token: ${{ secrets.token }}
+      server: ${{ secrets.server }}
+      authority: ${{ secrets.authority }}
