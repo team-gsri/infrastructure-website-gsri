@@ -1,0 +1,23 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: homepage
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    external-dns.alpha.kubernetes.io/hostname: gsri.arwyn.fr
+spec:
+  tls:
+    - secretName: cert-gsri-arwyn-fr
+      hosts:
+        - gsri.arwyn.fr
+  rules:
+    - host: gsri.arwyn.fr
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: homepage
+                port:
+                  number: 8080
