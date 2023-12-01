@@ -3,4 +3,4 @@ resources:
   - ingress.yaml
   - service.yaml
 
-namespace: arwynfr
+namespace: gsri
