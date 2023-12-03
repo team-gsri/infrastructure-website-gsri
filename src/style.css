@@ -9,6 +9,10 @@
     text-transform: uppercase;
 }
 
+#hero>div{
+    --bs-bg-opacity: 0.66;
+}
+
 #back {
     z-index: -1;
     position: absolute;

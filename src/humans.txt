@@ -1,0 +1,10 @@
+/* TEAM */
+Development: Adrien Hupond
+Site: https://ahupond.dev
+Location: Grenoble, France.
+
+/* SITE */
+Last update: 2023/12/03
+Standards: HTML5, CSS3
+Components: Bootstrap, FontAwesome
+Software: VScode
