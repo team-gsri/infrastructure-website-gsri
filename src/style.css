@@ -3,13 +3,13 @@
     min-height: 60vh;
     overflow: hidden;
     position: relative;
-    background-image: url('./img/streetfight.jpg');
+    background-image: url('./img/streetfight.webp');
     background-size: cover;
     background-position: center;
     text-transform: uppercase;
 }
 
-#hero>div{
+#hero>div {
     --bs-bg-opacity: 0.66;
 }
 
