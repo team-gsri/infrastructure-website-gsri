@@ -6,6 +6,16 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     external-dns.alpha.kubernetes.io/hostname: www.gsri.team
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
+    nginx.ingress.kubernetes.io/server-snippet: |
+      gzip on;
+      gzip_buffers 16 8k;
+      gzip_comp_level 6;
+      gzip_disable "msie6";
+      gzip_http_version 1.1;
+      gzip_min_length 256;
+      gzip_proxied any;
+      gzip_types text/css text/html;
+      gzip_vary on;
 spec:
   tls:
     - secretName: cert-gsri-team
