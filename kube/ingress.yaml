@@ -7,6 +7,7 @@ metadata:
     external-dns.alpha.kubernetes.io/hostname: www.gsri.team
     nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
     nginx.ingress.kubernetes.io/server-snippet: |
+      add_header Cache-Control "public, max-age=86400";
       gzip on;
       gzip_buffers 16 8k;
       gzip_comp_level 6;
