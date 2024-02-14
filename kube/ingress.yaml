@@ -4,37 +4,16 @@ metadata:
   name: homepage
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    external-dns.alpha.kubernetes.io/hostname: www.gsri.team
+    nginx.ingress.kubernetes.io/from-to-www-redirect: "true"
 spec:
   tls:
-    - secretName: cert-gsri-arwyn-fr
-      hosts:
-        - gsri.arwyn.fr
     - secretName: cert-gsri-team
       hosts:
-        - gsri.team
         - www.gsri.team
+        - gsri.team
   rules:
     - host: www.gsri.team
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: homepage
-                port:
-                  number: 8080
-    - host: gsri.team
-      http:
-        paths:
-          - path: /
-            pathType: Prefix
-            backend:
-              service:
-                name: homepage
-                port:
-                  number: 8080
-    - host: gsri.arwyn.fr
       http:
         paths:
           - path: /
