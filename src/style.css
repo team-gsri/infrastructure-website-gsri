@@ -13,66 +13,12 @@
     --bs-bg-opacity: 0.66;
 }
 
-#back {
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    min-height: 100%;
-    min-width: 100%;
-
-}
-
 #footer-hide {
     height: 5rem;
 }
 
 body {
     position: relative;
-}
-
-@media screen and (min-width: 576px) {
-    .typed-out {
-        overflow: hidden;
-        border-right: .15em solid white;
-        white-space: nowrap;
-        font-size: 3.5rem;
-        font-family: 'Share Tech Mono', monospace;
-        width: 0;
-        animation:
-            typing 1s steps(20, end) forwards,
-            blink .8s infinite;
-    }
-}
-
-/* .bg-dark a.nav-link {
-    color: white;
-    text-decoration: underline;
-} */
-
-.typer-container {
-    display: inline-block;
-}
-
-@keyframes typing {
-    from {
-        width: 0
-    }
-
-    to {
-        width: 100%
-    }
-}
-
-@keyframes blink {
-    from {
-        border-color: transparent
-    }
-
-    to {
-        border-color: white;
-    }
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
