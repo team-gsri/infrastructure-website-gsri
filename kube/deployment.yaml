@@ -13,6 +13,8 @@ spec:
     metadata:
       labels:
         app: homepage
+      annotations:
+        ad.datadoghq.com/app.logs: '[{"source":"nginx","service":"homepage"}]'
     spec:
       containers:
         - name: app
