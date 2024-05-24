@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: homepage
+  name: vitrine
   labels:
-    app: homepage
+    app: vitrine
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: homepage
+      app: vitrine
   template:
     metadata:
       labels:
-        app: homepage
+        app: vitrine
       annotations:
-        ad.datadoghq.com/app.logs: '[{"source":"nginx","service":"homepage"}]'
+        ad.datadoghq.com/app.logs: '[{"source":"nginx","service":"vitrine"}]'
     spec:
       containers:
         - name: app

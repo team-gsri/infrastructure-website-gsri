@@ -1,7 +1,7 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: homepage
+  name: vitrine
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     external-dns.alpha.kubernetes.io/hostname: www.gsri.team
@@ -31,6 +31,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: homepage
+                name: vitrine
                 port:
                   number: 8080
