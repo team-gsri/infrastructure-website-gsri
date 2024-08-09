@@ -15,6 +15,7 @@
 
 body {
     position: relative;
+    padding-bottom: 3rem;
 }
 
 iframe[src*=youtube] {
