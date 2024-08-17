@@ -1,0 +1,22 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "defaultDestination": "src/lib",
+  "libraries": [
+    {
+      "library": "bootstrap@5.3.3",
+      "files": [
+        "css/bootstrap.min.css",
+        "js/bootstrap.min.js"
+      ]
+    },
+    {
+      "library": "font-awesome@6.6.0",
+      "files": [
+        "css/all.min.css",
+        "webfonts/fa-brands-400.woff2",
+        "webfonts/fa-solid-900.woff2"
+      ]
+    }
+  ]
+}
