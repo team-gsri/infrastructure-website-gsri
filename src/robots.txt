@@ -1,4 +1,4 @@
 Sitemap: https://www.gsri.team/sitemap.txt
 
 User-agent: *
-Disallow:
+Disallow: /*?*
