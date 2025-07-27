@@ -1,7 +1,7 @@
 {
   "version": "1.0",
   "defaultProvider": "cdnjs",
-  "defaultDestination": "src/lib",
+  "defaultDestination": "src/www/lib",
   "libraries": [
     {
       "library": "bootstrap@5.3.3",

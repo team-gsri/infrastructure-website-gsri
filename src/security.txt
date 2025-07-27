@@ -1,4 +1,0 @@
-Contact: https://discord.gg/bhMn4jd
-Preferred-Languages: fr, en
-Canonical: https://www.gsri.team/security.txt
-Policy: https://github.com/team-gsri/.github/blob/master/SECURITY.md

@@ -3,5 +3,29 @@
   "extends": [
     "config:recommended",
     "docker:pinDigests"
+  ],
+  "packageRules": [
+    {
+      "matchUpdateTypes": [
+        "minor",
+        "patch",
+        "digest",
+        "pinDigest"
+      ],
+      "matchCurrentVersion": "!/^0/",
+      "automerge": true
+    }
+  ],
+  "customManagers": [
+    {
+      "fileMatch": [
+        "(^|/)libman\\.json$"
+      ],
+      "customType": "regex",
+      "datasourceTemplate": "npm",
+      "matchStrings": [
+        "\\\"library\\\":\\s?\\\"(?<packageName>.*)@(?<currentValue>.*)\\\""
+      ]
+    }
   ]
 }
