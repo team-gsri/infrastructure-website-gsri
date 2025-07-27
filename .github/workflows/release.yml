@@ -8,14 +8,52 @@ on:
       - "src/**"
       - "kube/**"
 
+env:
+  DOCKER_REGISTRY: ghcr.io
+  DOCKER_REPOSITORY: ${{ github.repository }}
+  DOCKER_TAG: ${{ github.run_id }}
+
 jobs:
   release:
-    uses: arwynfr/arwynfr/.github/workflows/rke2-deployment-generic.yaml@main
-    with:
-      version: ${{ github.run_id }}
-      sources: src
-      resources: kube
-    secrets:
-      token: ${{ secrets.token }}
-      server: ${{ secrets.server }}
-      authority: ${{ secrets.authority }}
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.DOCKER_REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Build docker image
+        run: docker build --tag ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY,,}:${DOCKER_TAG} src
+
+      - name: Push docker image
+        run: docker push ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY,,}:${DOCKER_TAG}
+
+  deploy:
+    runs-on: self-hosted
+    needs: release
+    steps:
+
+      - name: Checkout sources
+        uses: actions/checkout@v4
+
+      - name: Kustomize configuration
+        run: |
+          cat <<EOF >> kube/kustomization.yaml
+          
+          images:
+          - name: app
+            newName: ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY,,}
+            newTag: "${DOCKER_TAG}"
+          EOF
+
+      - name: Inspect kustomization
+        run: cat kube/kustomization.yaml
+
+      - name: Apply configuration
+        run: kubectl apply -k kube
