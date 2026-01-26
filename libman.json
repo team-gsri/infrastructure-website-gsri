@@ -4,18 +4,18 @@
   "defaultDestination": "src/www/lib",
   "libraries": [
     {
-      "library": "bootstrap@5.3.7",
-      "files": [
-        "css/bootstrap.min.css",
-        "js/bootstrap.min.js"
-      ]
-    },
-    {
       "library": "font-awesome@7.0.0",
       "files": [
         "css/all.min.css",
         "webfonts/fa-brands-400.woff2",
         "webfonts/fa-solid-900.woff2"
+      ]
+    },
+    {
+      "library": "bootstrap@5.3.7",
+      "files": [
+        "css/bootstrap.min.css",
+        "js/bootstrap.min.js"
       ]
     }
   ]
