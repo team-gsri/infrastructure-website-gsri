@@ -10,7 +10,8 @@ spec:
     mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
     operation: copy
   ref:
-    semver: "*"
+    numerical:
+      order: asc
 ---
 apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
