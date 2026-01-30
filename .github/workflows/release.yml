@@ -10,9 +10,10 @@ on:
 
 env:
   DOCKER_REGISTRY: ghcr.io
-  DOCKER_NAME: vitrine-docker
-  DOCKER_TAG: ${{ github.run_id }}
-  HELM_NAME: vitrine-helm
+  PACKAGE_DOCKER: vitrine-docker
+  PACKAGE_HELM: vitrine-helm
+  PATH_DOCKER: ./src
+  PATH_HELM: ./build/helm
 
 jobs:
   release:
@@ -28,14 +29,21 @@ jobs:
       - name: 🔨 Git checkout
         uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
 
+      - name: 🔨 Version number
+        run: ./build/version/New-ReleaseVersion.ps1
+        shell: pwsh
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+
       - name: 📦 Build Docker image
-        run: docker build ./src --tag ${DOCKER_REGISTRY}/${GITHUB_REPOSITORY@L}/${DOCKER_NAME}:${DOCKER_TAG}
+        run: docker build ${PATH_DOCKER} --tag ${DOCKER_REGISTRY}/${GITHUB_REPOSITORY@L}/${PACKAGE_DOCKER}:${{ steps.version.outputs.version }}
 
       - name: 📦 Package Helm chart
-        run: helm package ./build/helm --version ${DOCKER_TAG}
+        run: helm package ${PATH_HELM} --version ${{ steps.version.outputs.version }}
 
       - name: 📌 Push Docker image
-        run: docker push ${DOCKER_REGISTRY}/${GITHUB_REPOSITORY@L}/${DOCKER_NAME}:${DOCKER_TAG}
+        run: docker push ${DOCKER_REGISTRY}/${GITHUB_REPOSITORY@L}/${PACKAGE_DOCKER}:${{ steps.version.outputs.version }}
 
       - name: 📌 Push Helm chart
-        run: helm push ${HELM_NAME}-${DOCKER_TAG}.tgz oci://${DOCKER_REGISTRY}/${GITHUB_REPOSITORY@L}
+        run: helm push ${PACKAGE_HELM}-${{ steps.version.outputs.version }}.tgz oci://${DOCKER_REGISTRY}/${GITHUB_REPOSITORY@L}
