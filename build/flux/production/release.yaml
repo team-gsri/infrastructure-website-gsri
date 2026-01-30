@@ -1,0 +1,29 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: OCIRepository
+metadata:
+  name: vitrine
+spec:
+  interval: 5m
+  url: oci://ghcr.io/team-gsri/infrastructure-website-gsri/vitrine-helm
+  layerSelector:
+    mediaType: "application/vnd.cncf.helm.chart.content.v1.tar+gzip"
+    operation: copy
+  ref:
+    semver: "*"
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: vitrine
+spec:
+  interval: 5m
+  releaseName: vitrine
+  chartRef:
+    kind: OCIRepository
+    name: vitrine
+  values:
+    dns:
+      rootDomain: gsri.team
+      hostnames:
+        - www.gsri.team
+        - gsri.team

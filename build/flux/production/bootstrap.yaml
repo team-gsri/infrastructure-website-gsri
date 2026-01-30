@@ -1,0 +1,23 @@
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: GitRepository
+metadata:
+  name: vitrine
+spec:
+  interval: 5m
+  ref:
+    branch: main
+  timeout: 60s
+  url: https://github.com/team-gsri/infrastructure-website-gsri
+---
+apiVersion: kustomize.toolkit.fluxcd.io/v1
+kind: Kustomization
+metadata:
+  name: vitrine
+spec:
+  force: false
+  interval: 5m
+  path: ./build/flux/production
+  prune: true
+  sourceRef:
+    kind: GitRepository
+    name: vitrine

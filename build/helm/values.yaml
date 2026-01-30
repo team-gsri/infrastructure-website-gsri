@@ -1,0 +1,5 @@
+product:
+  name: vitrine
+
+image:
+  name: ghcr.io/team-gsri/infrastructure-website-gsri/vitrine-docker

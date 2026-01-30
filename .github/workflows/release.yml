@@ -10,50 +10,32 @@ on:
 
 env:
   DOCKER_REGISTRY: ghcr.io
-  DOCKER_REPOSITORY: ${{ github.repository }}
+  DOCKER_NAME: vitrine-docker
   DOCKER_TAG: ${{ github.run_id }}
+  HELM_NAME: vitrine-helm
 
 jobs:
   release:
     runs-on: ubuntu-latest
     steps:
-
-      - name: Checkout sources
-        uses: actions/checkout@v4
-
-      - name: Login to GitHub Container Registry
-        uses: docker/login-action@v3
+      - name: 🔓 Docker login
+        uses: docker/login-action@c94ce9fb468520275223c153574b00df6fe4bcc9 # v3
         with:
           registry: ${{ env.DOCKER_REGISTRY }}
           username: ${{ github.actor }}
-          password: ${{ secrets.GITHUB_TOKEN }}
+          password: ${{ github.token }}
 
-      - name: Build docker image
-        run: docker build --tag ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY,,}:${DOCKER_TAG} src
+      - name: 🔨 Git checkout
+        uses: actions/checkout@8e8c483db84b4bee98b60c0593521ed34d9990e8 # v6
 
-      - name: Push docker image
-        run: docker push ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY,,}:${DOCKER_TAG}
+      - name: 📦 Build Docker image
+        run: docker build ./src --tag ${DOCKER_REGISTRY}/${GITHUB_REPOSITORY@L}/${DOCKER_NAME}:${DOCKER_TAG}
 
-  deploy:
-    runs-on: self-hosted
-    needs: release
-    steps:
+      - name: 📦 Package Helm chart
+        run: helm package ./build/helm --version ${DOCKER_TAG}
 
-      - name: Checkout sources
-        uses: actions/checkout@v4
+      - name: 📌 Push Docker image
+        run: docker push ${DOCKER_REGISTRY}/${GITHUB_REPOSITORY@L}/${DOCKER_NAME}:${DOCKER_TAG}
 
-      - name: Kustomize configuration
-        run: |
-          cat <<EOF >> kube/kustomization.yaml
-          
-          images:
-          - name: app
-            newName: ${DOCKER_REGISTRY}/${DOCKER_REPOSITORY,,}
-            newTag: "${DOCKER_TAG}"
-          EOF
-
-      - name: Inspect kustomization
-        run: cat kube/kustomization.yaml
-
-      - name: Apply configuration
-        run: kubectl apply -k kube
+      - name: 📌 Push Helm chart
+        run: helm push ${HELM_NAME}-${DOCKER_TAG}.tgz oci://${DOCKER_REGISTRY}/${GITHUB_REPOSITORY@L}

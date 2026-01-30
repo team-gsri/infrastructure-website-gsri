@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: "{{ .Release.Name }}-website"
+  namespace: "{{ .Release.Namespace }}"
+  labels:
+    app.kubernetes.io/name: {{ .Values.product.name | quote }}
+    app.kubernetes.io/instance: {{ .Release.Name | quote }}
+    app.kubernetes.io/version: {{ .Values.image.tag | default (splitList "+" .Chart.Version | first) | quote }}
+    app.kubernetes.io/managed-by: Helm
+    app.kubernetes.io/component: website
+    app.kubernetes.io/part-of: {{ .Values.product.name | quote }}
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: "{{ .Release.Name }}-website"
+  template:
+    metadata:
+      labels:
+        app: "{{ .Release.Name }}-website"
+    spec:
+      containers:
+        - name: app
+          image: "{{ .Values.image.name }}:{{ .Values.image.tag | default (splitList "+" .Chart.Version | first) }}"
+          ports:
+            - containerPort: 8080
