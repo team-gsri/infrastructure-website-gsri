@@ -2,6 +2,7 @@ apiVersion: source.toolkit.fluxcd.io/v1
 kind: OCIRepository
 metadata:
   name: vitrine
+  namespace: gsri
 spec:
   interval: 5m
   url: oci://ghcr.io/team-gsri/infrastructure-website-gsri/vitrine-helm
@@ -15,12 +16,14 @@ apiVersion: helm.toolkit.fluxcd.io/v2
 kind: HelmRelease
 metadata:
   name: vitrine
+  namespace: gsri
 spec:
   interval: 5m
   releaseName: vitrine
   chartRef:
     kind: OCIRepository
     name: vitrine
+    namespace: gsri
   values:
     dns:
       rootDomain: gsri.team
