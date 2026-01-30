@@ -4,9 +4,6 @@ on:
   workflow_dispatch:
   push:
     branches: [main]
-    paths:
-      - "src/**"
-      - "kube/**"
 
 env:
   DOCKER_REGISTRY: ghcr.io
@@ -47,3 +44,8 @@ jobs:
 
       - name: 📌 Push Helm chart
         run: helm push ${PACKAGE_HELM}-${{ steps.version.outputs.version }}.tgz oci://${DOCKER_REGISTRY}/${GITHUB_REPOSITORY@L}
+
+      - name: 📣 Create GH release
+        run: gh release create ${{ steps.version.outputs.version }} --generate-notes
+        env:
+          GH_TOKEN: ${{ github.token }}
