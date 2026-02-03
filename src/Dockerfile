@@ -1,11 +1,6 @@
-FROM dcycle/purgecss:1 AS purger
-WORKDIR /src/homepage
-COPY www .
-RUN find . -name "*.css" -exec purgecss --css {} --content *.html **/*.js --output {} \;
-
 FROM tdewolff/minify:v2.20.20@sha256:eb79a7f8ff8110c8eb3cc623ec6d60cfed668222411af5d8bb13c3478717abe2 AS minifier
 WORKDIR /src/homepage
-COPY --from=purger /src/homepage /src/homepage
+COPY www .
 RUN for ext in "css" "js" "html"; do find . -name "*.$ext" -exec minify -o {} {} \;; done
 RUN for ext in "css" "js" "html" "mp4" "png" "webp" "webm" "woff2"; do find . -name "*.$ext" -exec gzip -9k {} \;; done
 
