@@ -15,7 +15,7 @@
       "library": "bootstrap@5.3.7",
       "files": [
         "css/bootstrap.min.css",
-        "js/bootstrap.min.js"
+        "js/bootstrap.bundle.min.js"
       ]
     }
   ]
