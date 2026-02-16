@@ -39,7 +39,8 @@
   <meta name="title" content="GSRI : équipe Arma reforger milsim" />
   <link rel="icon" href="https://www.gsri.team/favicon.ico" sizes="32x32" />
   <link rel="author" href="https://www.gsri.team/humans.txt" />
-  <link rel="canonical" href="https://www.gsri.team/" />
+  <link rel="canonical" href="https://www.gsri.team/" hreflang="fr" />
+  <link rel="alternate" href="https://www.gsri.team/about.html" hreflang="en" />
 
   <link href="./lib/css/all.min.css" rel="stylesheet" />
   <link href="./lib/css/bootstrap.min.css" rel="stylesheet" />
@@ -49,23 +50,144 @@
 </head>
 
 <body>
-  <div id="hero-home" class="bg-image d-flex justify-content-center align-middle text-center">
-    <video autoplay muted loop>
+
+  <header id="hero-home" class="text-uppercase vw-10 vh-100 overflow-hidden position-relative">
+    <video autoplay muted loop class="position-absolute min-vw-100 min-vh-100"
+      title="Un opérateur GSRI en patrouille dans les bois" aria-describedby="video-description">
       <source src="/video/hero.webm" type="video/webm">
       Votre navigateur ne supporte pas ce format.
     </video>
-    <div class="text-light bg-dark py-5 w-100">
-      <img src="/img/logo.webp" alt="GSRI logo - un aigle fondant sur sa proie" />
-      <h1 class="display-3" id="name">Groupe spécial de reconnaissance et d'intervention</h1>
-      <p class="lead d-none d-sm-block">Unité de simulation militaire sur Arma Reforger</p>
-      <div class="text-center my-5 btn-group">
-        <a href="/apropos.html" class="btn btn-lg btn-secondary">
-          <i class="fa-solid fa-info-circle fa-1x me-1"></i>
-          Découvrir nos opérations
+    <div class="bg-dark w-100 h-100 opacity-75 position-absolute"></div>
+    <div
+      class="container h-100 position-relative d-flex align-items-center justify-content-center text-center top-0 left-0">
+      <div class="col-md-8">
+        <img src="/img/logo.webp" class="m-5"
+          alt="GSRI logo - un aigle fondant sur sa proie, avec notre devise : aut inveniam viam aut faciam" />
+        <h1 class="display-3" id="name">Groupe spécial de reconnaissance et d'intervention</h1>
+        <p class="lead d-none d-sm-block">Unité de simulation militaire sur Arma Reforger</p>
+        <div class="text-center my-5 btn-group">
+          <a href="#depart-mission" class="btn btn-lg btn-primary">
+            <i class="fa-solid fa-bolt fa-1x me-1"></i>
+            Partir en mission
+          </a>
+          <a href="/about.html" class="btn btn-lg btn-outline-secondary">
+            <i class="fa-solid fa-globe fa-1x me-1"></i>
+            English version
+          </a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="container pb-5 mt-5">
+
+    <h2 class="p-3 rounded bg-light-subtle border border-light-subtle" id="a-propos">
+      À propos de nous
+    </h2>
+
+    <div class="row my-5">
+      <div class="col-3">
+        <img src="/img/portait.webp" alt="portrait d'un soldat des forces spéciales en uniforme et en béret" />
+      </div>
+      <div class="col-9">
+        <div class="bg-light text-dark lead p-5 rounded-5">
+          <p>
+            Fondé en 2015, le GSRI est un groupe de joueurs partageant une vision commune de la simulation militaire.
+            Nous pensons que l'immersion, que la coopération, et l'efficacité permettent de réussir des opérations
+            complexes et gratifiantes. Nous offrons une expérience exigeante où chaque défi est une opportunité de
+            progression. Le GSRI cultive un environnement respectueux et structuré, où la discipline et l'esprit
+            d'équipe sont les clés de notre réussite collective.
+          </p>
+          <p class="fw-bold">
+            Si vous recherchez des opérations où la cohésion du groupe est primordiale, vous êtes au bon endroit.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <h2 class="p-3 rounded bg-light-subtle border border-light-subtle" id="depart-mission">
+      Ce que nous faisons
+    </h2>
+
+    <div class="row g-4 row-cols-1 row-cols-xl-3 text-center">
+      <div class="col">
+        <div class="card">
+          <img src="/img/convoy.webp" alt="random" class="card-img-top" />
+          <div class="card-body">
+            <h3 class="card-title">
+              Opération scénarisée
+            </h3>
+            <h4 class="card-subtitle text-body-secondary">
+              Le vendredi de 21h00 à 23h30
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="/img/boarding.webp" alt="random" class="card-img-top" />
+          <div class="card-body">
+            <h3 class="card-title">
+              Opération libre
+            </h3>
+            <h4 class="card-subtitle text-body-secondary">
+              Selon disponibilité
+            </h4>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <img src="/img/barracks.webp" alt="random" class="card-img-top" />
+          <div class="card-body">
+            <h3 class="card-title">
+              Formation
+            </h3>
+            <h4 class="card-subtitle text-body-secondary">
+              Le dimanche de 21h00 à 23h00
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ul class="list-group mt-5">
+      <li class="list-group-item bg-light-subtle">
+        <span class="h5 p-3">
+          Pour participer à nos opérations
+        </span>
+      </li>
+      <li class="list-group-item">
+        <i class="fa-solid fa-info-circle"></i>
+        La plupart de nos missions sont ouvertes au public
+      </li>
+      <li class="list-group-item">
+        <i class="fa-solid fa-check"></i>
+        Consultez le tableau des missions sur Discord (canal <span class="font-monospace">#inscriptions-missions</span>)
+      </li>
+      <li class="list-group-item">
+        <i class="fa-solid fa-check"></i>
+        Lancez Arma Reforger et recherchez &laquo;&nbsp;GSRI&nbsp;&raquo; dans la liste des serveurs
+      </li>
+      <li class="list-group-item">
+        <i class="fa-solid fa-check"></i>
+        Téléchargez les mods en avance et présentez-vous à l'heure prévue sur la place d'armes
+      </li>
+      <li class="list-group-item">
+        <i class="fa-solid fa-warning"></i>
+        Les opérations démarrent à l'heure prévue, nous n'attendons pas les retardataires
+      </li>
+    </ul>
+
+    <div class="text-center my-5">
+      <div class="btn-group-vertical" role="group" aria-label="Vertical button group">
+        <a href="https://discord.gg/bhMn4jd" class="btn btn-primary btn-lg btn-block">
+          <i class="fa-brands fa-discord fa-1x"></i>
+          Consulter la liste des prochaines opérations
         </a>
-        <a href="/rejoindre.html" class="btn btn-lg btn-primary">
-          <i class="fa-solid fa-user-plus fa-1x me-1"></i>
-          S'engager dès maintenant
+        <a href="/rejoindre.html" class="btn btn-outline-secondary btn-lg btn-block">
+          <i class="fa-solid fa-user-plus fa-1x"></i>
+          Comment devenir membre
         </a>
       </div>
     </div>
@@ -90,11 +212,6 @@
             </a>
           </li>
           <li class="nav-item mx-2">
-            <a href="/apropos.html" class="nav-link" title="A propos">
-              <i class="fa-solid fa-info-circle fa-1x me-1"></i> A propos
-            </a>
-          </li>
-          <li class="nav-item mx-2">
             <a href="/rejoindre.html" class="nav-link" title="Rejoindre">
               <i class="fa-solid fa-user-plus fa-1x me-1"></i> Rejoindre
             </a>
@@ -113,7 +230,6 @@
             <a href="#" class="nav-link dropdown-toggle" title="" data-bs-toggle="dropdown" role="button">
               <i class="fa-solid fa-plus me-1"></i> Autres
             </a>
-
             <div class="dropdown mt-2">
               <ul class="dropdown-menu dropdown-menu-end">
                 <li>
@@ -147,6 +263,10 @@
       </div>
     </div>
   </nav>
+
+  <div id="video-description" class="sr-only visually-hidden" aria-hidden="true">
+    Un opérateur GSRI en patrouille dans les bois.
+  </div>
 
   <script src="/lib/js/bootstrap.bundle.min.js"></script>
 

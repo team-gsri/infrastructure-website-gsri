@@ -4,8 +4,8 @@ Site: https://ahupond.dev
 Location: Grenoble, France.
 
 /* SITE */
-Last update: 2026-01-26
-Language: French
+Last update: 2026-02-16
+Language: French, English
 Standards: HTML5, CSS3
 Components: Bootstrap, FontAwesome
 Software: VScode
